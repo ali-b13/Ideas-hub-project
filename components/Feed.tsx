@@ -52,18 +52,20 @@ const Feed = () => {
     }
   }
   
+  const fetchPromptsApi=async()=>{
+    const response =await fetch("/api/prompt/prompts");
+     const data=await response.json();
+     setPrompts(data.data)
+   
+  }
   useEffect(()=>{
+      fetchPromptsApi();
+      const interval = setInterval(fetchPromptsApi, 5000);
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(interval);
 
-    if(searchText==""){
-      const fetchPromptsApi=async()=>{
-        const response =await fetch("/api/prompt/prompts");
-         const data=await response.json();
-         setPrompts(data.data)
-       
-      }
-      fetchPromptsApi()
-    }
-  },[searchText])
+    
+  },[])
 	return (
 		<>
 			<form onSubmit={handleSearchInput}  className="w-full md:w-[50%] flex justify-center ">
