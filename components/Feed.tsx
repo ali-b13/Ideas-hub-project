@@ -34,13 +34,13 @@ const Feed = () => {
     e.preventDefault()
     handleTextOnChange()
   };
+  const fetchResultApi=async(type:string)=>{
+    const res=await fetch("/api/prompt/search",{method:"POST",body:JSON.stringify({type,searchText})})
+   const data=await res.json()
+   setPrompts(data.posts)
+  }
   const handleTextOnChange=()=>{
     const typeOfSearch=searchText[0]?.trim();
-    const fetchResultApi=async(type:string)=>{
-      const res=await fetch("/api/prompt/search",{method:"POST",body:JSON.stringify({type,searchText})})
-     const data=await res.json()
-     setPrompts(data.posts)
-    }
     if(typeOfSearch=="@"){
       fetchResultApi("@")
     }
@@ -53,22 +53,20 @@ const Feed = () => {
   }
   
   useEffect(()=>{
-    const fetchPromptsApi=async()=>{
-      const response =await fetch("/api/prompt/prompts");
-       const data=await response.json();
-       setPrompts(data.data)
-     
+
+    if(searchText==""){
+      const fetchPromptsApi=async()=>{
+        const response =await fetch("/api/prompt/prompts");
+         const data=await response.json();
+         setPrompts(data.data)
+       
+      }
+      fetchPromptsApi()
     }
-    fetchPromptsApi()
-    return () => {
-      // Perform cleanup or teardown here
-      setPrompts([])
-      console.log('Component unmounted, cleanup performed');
-    };
-  },[session?.user.id])
+  },[searchText])
 	return (
 		<>
-			<form onSubmit={handleSearchInput} onChange={handleSearchInput} className="w-full md:w-[50%] flex justify-center ">
+			<form onSubmit={handleSearchInput}  className="w-full md:w-[50%] flex justify-center ">
 				<input
 					className="search_input w-[60%]  md:w-[80%] text-xs "
 					placeholder="Search for #Tag , @username , ideas "
@@ -85,5 +83,7 @@ const Feed = () => {
 		</>
 	);
 };
+
+
 
 export default Feed;
