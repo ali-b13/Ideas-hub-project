@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import CardPrompt from "./CardPrompt";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 const CardLists=({data,handleTagClick}:any)=>{
    return (
     <>
@@ -20,6 +21,7 @@ const CardLists=({data,handleTagClick}:any)=>{
    )
 }
 const Feed = () => {
+  const {data:session}=useSession()
   const router=useRouter()
 	const [searchText, setSearchText] = useState("");
   const [prompts,setPrompts]=useState([]);
@@ -63,7 +65,7 @@ const Feed = () => {
       setPrompts([])
       console.log('Component unmounted, cleanup performed');
     };
-  },[])
+  },[session?.user.id])
 	return (
 		<>
 			<form onSubmit={handleSearchInput} onChange={handleSearchInput} className="w-full md:w-[50%] flex justify-center ">
