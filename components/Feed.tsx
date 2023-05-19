@@ -55,8 +55,14 @@ const Feed = () => {
       const response =await fetch("/api/prompt/prompts");
        const data=await response.json();
        setPrompts(data.data)
+     
     }
     fetchPromptsApi()
+    return () => {
+      // Perform cleanup or teardown here
+      setPrompts([])
+      console.log('Component unmounted, cleanup performed');
+    };
   },[])
 	return (
 		<>
