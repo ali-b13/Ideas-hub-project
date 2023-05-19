@@ -6,7 +6,7 @@ const CardLists=({data,handleTagClick}:any)=>{
    return (
     <>
     {
-      data.map((prompt:any)=>{
+      data?.map((prompt:any)=>{
         return (
           <CardPrompt
           key={prompt._id}

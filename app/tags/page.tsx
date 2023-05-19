@@ -19,7 +19,7 @@ const Tags = () => {
     <div className='w-full flex flex-col items-center gap-4 '>
       <h1 className='text-4xl text-gray-400 font-semibold'>All Related Tag {tagName} posts </h1>
       <div className='w-full flex items-center flex-col gap-3'>
-        {posts.map((post:any)=>{
+        {posts?.map((post:any)=>{
           return (
             <CardPrompt
             key={post._id}
