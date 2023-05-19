@@ -19,7 +19,7 @@ const CardPrompt = ({post,handleTagClick,handleDelete,handleEdit}:any) => {
   }
   
   return (
-    <section className='card w-[96%] md:w-[60%]    p-2  '>
+    <section className='card w-[95%] md:w-[60%]    p-2  '>
     <div className='flex flex-row justify-between'>
       <div className='flex justify-start gap-3 items-start'>
        <Link href={session?.user.id==post.creator._id?`/profile` :`/user-profile?userId=${post.creator._id}`}><Image src={post.creator.image} width={40} height={40} alt='user_image' className='rounded-lg self-center'/></Link>
