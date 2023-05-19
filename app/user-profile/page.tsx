@@ -31,7 +31,7 @@ const UserPage = () => {
     <>
    <Profile
     name={posts[0]?.creator?.username}
-    desc={"Welcome to your Personalized Profile Page"}
+    desc={`${posts[0]?.creator?.username}'s posts  profile`}
      posts={posts}
      user={{username:posts[0]?.creator?.username,image:posts[0]?.creator?.image}}
    />

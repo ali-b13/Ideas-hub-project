@@ -62,7 +62,7 @@ const Feed = () => {
 		<>
 			<form onSubmit={handleSearchInput} onChange={handleSearchInput} className="w-full md:w-[50%] flex justify-center ">
 				<input
-					className="search_input  w-[80%] text-xs "
+					className="search_input w-[60%]  md:w-[80%] text-xs "
 					placeholder="Search for #Tag , @username , ideas "
           onChange={(e)=>setSearchText(e.target.value)}
 				/>

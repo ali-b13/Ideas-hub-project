@@ -80,7 +80,7 @@ border-radius: 8px 0 0 ;
     right: 0%;
     height: fit-content;
     min-height: 25%;
-    width: 30%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,6 +89,7 @@ border-radius: 8px 0 0 ;
     box-shadow: 1px 1px 1px 1px rgb(214, 213, 213);
     transition: all 1s ease-out;
     animation: MoveIN 0.5s ease-in;
+    z-index: 999;
 }
 
 .dropdown_link{
