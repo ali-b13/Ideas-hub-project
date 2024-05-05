@@ -1,4 +1,4 @@
-import { connectionDb } from "@uitls/database"
+import { connectionDb, disconnectionDb } from "@uitls/database"
 import Prompt from "@models/prompt"
 import { NextResponse } from "next/server"
 import User from "@models/user"
@@ -43,6 +43,7 @@ export const POST =async(req:Request)=>{
   } catch (error) {
     return NextResponse.json({message:"failed to fetch",status:422})
   }
+  
 
 
 }

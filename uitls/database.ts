@@ -1,18 +1,23 @@
-import mongoose from 'mongoose';
-let isConnected:Boolean=false;
-export const connectionDb=async()=>{
-  mongoose.set("strictQuery",true)
-  if(isConnected){
-    console.log("Mongo db is connected")
-    return;
-  }
-  try {
-     await mongoose.connect(process.env.dbUri||"",{
-      dbName:"share_promots",
-     });
-     isConnected=true
-     console.log("mongo db connected")
-  } catch (error) {
-    console.log("error in db",error)
-  }
+
+import mongoose from "mongoose";
+export async function  connectionDb(){
+  
+    try {
+      mongoose.set("strictQuery",true)
+       await  mongoose.connect(process.env.dbUri as string,{autoCreate:false,dbName:"share_promots",})
+        console.log("connected to mongoDB successfully")
+    } catch (error) {
+        console.log(error)
+       
+    }
+}
+
+export async function disconnectionDb(){
+    try {
+        await  mongoose.disconnect()
+         console.log("disconnect to mongoDB ")
+     } catch (error) {
+         console.log(error)
+        
+     }
 }

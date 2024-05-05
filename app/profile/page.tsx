@@ -10,6 +10,7 @@ interface USER{
 import Model from '@components/Model'
 const MyProfile = () => {
   const [isModelOpen,setIsModelOpen]=useState(false);
+  const [isLoading,setIsLoading]=useState(true)
   const [shouldBeDeleted,setShouldBeDeleted]=useState(null)
   const onClose=()=>{
     setIsModelOpen(false)
@@ -41,6 +42,7 @@ const MyProfile = () => {
     const response=await fetch(`/api/users/${session?.user.id}/posts`,{method:"GET"});
     console.log(response,'response')
     const data=await response.json();
+    setIsLoading(false)
     setPosts(data.posts)
   }
   useEffect(()=>{
@@ -48,7 +50,9 @@ const MyProfile = () => {
         fetchUserPost()
       }
   },[session?.user.id])
-  console.log(posts,'got posts')
+ if(isLoading){
+  return <div>Loading...</div>
+ }
   return (
   <>
    <Profile

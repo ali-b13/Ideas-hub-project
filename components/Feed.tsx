@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CardPrompt from "./CardPrompt";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+
 const CardLists=({data,handleTagClick}:any)=>{
    return (
     <>
@@ -52,19 +53,15 @@ const Feed = () => {
     }
   }
   
-  const fetchPromptsApi=async()=>{
-    const response =await fetch("/api/prompt/prompts");
-     const data=await response.json();
-     setPrompts(data.data)
+  // const fetchPromptsApi=async()=>{
+  //   const response =await fetch("/api/prompt/prompts");
+  //    const data=await response.json();
+  //    setPrompts(data.data)
    
-  }
+  // }
   useEffect(()=>{
-      fetchPromptsApi();
-      const interval = setInterval(fetchPromptsApi, 5000);
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(interval);
-
-    
+    fetchResultApi(searchText[0]?.trim());
+      
   },[])
 	return (
 		<>
@@ -82,7 +79,8 @@ const Feed = () => {
       data={prompts}
       handleTagClick={handleTagClick}
       />
-    
+  
+   
 		</>
 	);
 };
