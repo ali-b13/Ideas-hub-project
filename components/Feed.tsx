@@ -82,6 +82,7 @@ const Feed = () => {
       data={prompts}
       handleTagClick={handleTagClick}
       />
+    
 		</>
 	);
 };
